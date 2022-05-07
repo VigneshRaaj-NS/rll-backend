@@ -19,23 +19,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
-@Table(name = "user1",schema = "hr")
+@Table(name = "user",schema = "bus")
 public class User {
 	
 	@Nullable
 	@Id
 	private Integer userId;
+	
 	@NotNull(message = "username cannot be null")
 	private String userName;
+	
 	@NotNull(message = "password cannot be null")
-	
-//	@Size(min = 8,message = "password is less than 8 character")
-	
 	private String password;
+	
 	@NotNull(message = "phone cannot be null")
 	private Long phone;
-	@NotBlank(message = "email cannot be null")
 	
+	@NotBlank(message = "email cannot be null")
 	private String email;
 	
 	@OneToMany(cascade = CascadeType.ALL)

@@ -18,8 +18,8 @@ public class BusManagementApplication {
 	@PostConstruct
 	public void initAdmin() {
 		Admin admin = new Admin();
-		admin.setAdminName("Goutham");
-		admin.setPassword("1234");
+		admin.setAdminName("admin");
+		admin.setPassword("admin12345");
 		adminService.addAdmin(admin);
 	}
 

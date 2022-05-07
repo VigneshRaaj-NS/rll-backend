@@ -1,10 +1,8 @@
 package com.instabus.exception;
 
 public class AdminAlreadyExistException extends RuntimeException {
-
-	/**
-	 * 
-	 */
+		
+	
 	private static final long serialVersionUID = 1L;
 
 	public AdminAlreadyExistException(String message, Throwable cause) {
