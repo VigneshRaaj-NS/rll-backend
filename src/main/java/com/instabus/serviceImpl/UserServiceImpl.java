@@ -108,6 +108,7 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public BookingDetails addBooking(BookingDetails booking, Integer userId, Integer busNumber) {
 		Optional<User> user = userDao.findById(userId);

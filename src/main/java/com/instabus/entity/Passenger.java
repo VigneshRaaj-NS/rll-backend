@@ -1,29 +1,74 @@
 package com.instabus.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+/*
+ *  change the schema attribute according to your schema
+ */
 
 @Entity
-@Table(name = "passengers",schema = "bus")
-@Data @NoArgsConstructor @AllArgsConstructor
+@Table(name = "passengers",schema = "hr")
 public class Passenger {
 	
 	@Id
-    private int passengerId;
+	@GeneratedValue
+	private Integer passengerId;
 	
-	@Column(nullable = false)
 	private String name;
-	@Column(nullable = false)
-	private int age;
-	@Column
+	private Integer age;
 	private Double luggage;
+	
+	
+
+	public Passenger() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Passenger(Integer passengerId, String name, Integer age, Double luggage) {
+		super();
+		this.passengerId = passengerId;
+		this.name = name;
+		this.age = age;
+		this.luggage = luggage;
+	}
+
+	public Integer getPassengerId() {
+		return passengerId;
+	}
+
+	public void setPassengerId(Integer passengerId) {
+		this.passengerId = passengerId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public Double getLuggage() {
+		return luggage;
+	}
+
+	public void setLuggage(Double luggage) {
+		this.luggage = luggage;
+	}
+
 
 }
