@@ -38,8 +38,8 @@ public class User {
 	@NotBlank(message = "email cannot be null")
 	private String email;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
+	@OneToMany(cascade = CascadeType.ALL) //One user can make many bookings
+	@JoinColumn(name = "user_id") //user_id column will be merged into BookingDetails Entity
 	private List<BookingDetails> bookingDetails = new ArrayList<BookingDetails>();
 
 	public User() {
