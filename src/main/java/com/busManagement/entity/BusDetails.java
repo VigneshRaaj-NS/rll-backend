@@ -22,7 +22,7 @@ public class BusDetails {
 	@NotNull(message = "daparture date cannot be null")
 	private String departureDate;
 
-	@NotNull(message = "arrival date cannot b null")
+	@NotNull(message = "arrival date cannot be null")
 	private String arrivalDate;
 
 	@NotNull(message = "Arival Time cannot be null")

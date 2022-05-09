@@ -36,12 +36,12 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	BookingDetailsDao bookingDao;
 
-	
+	//adding admin to the database
 	@Override
 	public Admin addAdmin(Admin admin) {
 		if (admin == null)
 			throw new NullAdminException("no data provided");
-		Integer adminId = (int) ((Math.random() * 900) + 100);
+		Integer adminId = (int) ((Math.random() * 900) + 100); //
 		
 		admin.setAdminId(adminId);
 		Optional<Admin> checkAdmin = adminDao.findById(admin.getAdminId());
@@ -53,7 +53,9 @@ public class AdminServiceImpl implements AdminService {
 			return admin;
 		}
 	}
-
+	
+	
+//for getting admin by ID
 	@Override
 	public Admin getAdmin(Integer adminId) {
 		if (adminId == null)
@@ -65,7 +67,7 @@ public class AdminServiceImpl implements AdminService {
 		return admin.get();
 	}
 	
-	
+	//FOR DELETING ADMIN
 	@Override
 	public void deleteAdmin(Integer adminId) {
 		if (adminId == null)
@@ -76,7 +78,8 @@ public class AdminServiceImpl implements AdminService {
 		}
 		adminDao.deleteById(adminId);
 	}
-
+    
+	//a
 	@Override
 	public Admin adminLogin(AdminAuth auth) {
 		if (auth == null) {
@@ -84,6 +87,8 @@ public class AdminServiceImpl implements AdminService {
 		}
 		Optional<Admin> admin = adminDao.findById(auth.getAdminId());
 		if (admin.isPresent()) {
+			
+			///////Check
 			if (admin.get().getAdminId() == auth.getAdminId() && admin.get().getPassword().equals(auth.getPassword())) {
 				return admin.get();
 			} else {
@@ -93,12 +98,15 @@ public class AdminServiceImpl implements AdminService {
 		} else
 			throw new AdminDoesnotExistException("admin doesnot exist");
 	}
-
+     
+	
+	//For getting all the bus details
 	@Override
 	public List<BusDetails> getAllBusDetails() {
 		return busDao.findAll();
 	}
-
+    
+	//For adding bus details
 	@Override
 	public BusDetails addBusDetails(BusDetails details) {
 		if (details == null) {
@@ -110,6 +118,7 @@ public class AdminServiceImpl implements AdminService {
 		return details;
 	}
 
+	//Deleting Bus By ID
 	@Override
 	public void deleteBus(Integer busNumber) {
 		if (busNumber == null)
@@ -120,7 +129,8 @@ public class AdminServiceImpl implements AdminService {
 		}
 		busDao.deleteById(busNumber);
 	}
-
+    
+	//Updating the bus details By ID
 	@Override
 	public BusDetails updateBus(BusDetails details) {
 		if (details == null)
@@ -133,10 +143,13 @@ public class AdminServiceImpl implements AdminService {
 		return details;
 	}
 	
+	
+	//Gettin all the passengers
 	public List<Passenger> getAllPassengers(){
 		return passengerDao.findAll();
 	}
 	
+	//Getting list of passengers by ID
 	public List<Passenger> getPassengersByBooking(Integer id){
 		if (id == null) throw new BookingDoesNotFoundException("no data provided");
 		Optional<BookingDetails> details = bookingDao.findById(id);

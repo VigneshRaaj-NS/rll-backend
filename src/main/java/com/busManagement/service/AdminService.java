@@ -8,7 +8,7 @@ import com.busManagement.entity.Passenger;
 import com.busManagement.utils.AdminAuth;
 
 public interface AdminService {
-	public Admin addAdmin(Admin admin);
+	public Admin addAdmin(Admin admin); //adding admin
 
 	public Admin getAdmin(Integer adminId);
 

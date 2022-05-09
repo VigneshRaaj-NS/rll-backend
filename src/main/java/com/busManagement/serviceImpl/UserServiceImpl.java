@@ -130,9 +130,11 @@ public class UserServiceImpl implements UserService{
 		bookingList.add(booking);
 		user.get().setBookingDetails(bookingList);
 		updateUser(user.get());
-		return bookingDao.getOne(bookingId);
+		return bookingDao.getById(bookingId);
 	}
-
+     
+	
+	//Deleting Booking
 	@Override
 	public void deleteBooking(Integer bookingId, Integer userId) {
 		Optional<User> u = userDao.findById(userId);
@@ -158,6 +160,8 @@ public class UserServiceImpl implements UserService{
 		updateUser(user);
 	}
 
+	
+	//List all the booking details made by the user
 	@Override
 	public List<BookingDetails> getBookingByUserId(Integer userId) {
 		Optional<User> user = userDao.findById(userId);
@@ -167,10 +171,11 @@ public class UserServiceImpl implements UserService{
 		return user.get().getBookingDetails();
 	}
 
+	  //Searching bus details //checking the findByRouteAndDate
 	@Override
-	public BusDetails findByRouteAndDate(String arrivalAirport, String departureAirport, String date) {
-		List<BusDetails> list = busDao.findByRouteDate(arrivalAirport.toLowerCase(),
-				departureAirport.toLowerCase());
+	public BusDetails findByRouteAndDate(String arrivalBusStop, String departureBusStop, String date) {
+		List<BusDetails> list = busDao.findByRouteDate(arrivalBusStop.toLowerCase(),
+				departureBusStop.toLowerCase());
 		for (BusDetails f : list) {
 			if (f.getDepartureDate().equals(date)) {
 				return f;
@@ -197,6 +202,7 @@ public class UserServiceImpl implements UserService{
 		if (passenger == null) {
 			throw new PassengerNotFoundException("no data provided");
 		}
+		
 		Optional<Passenger> oldPassenger = passengerDao.findById(passenger.getPassengerId()); 
 		if (!oldPassenger.isPresent()) {
 			throw new PassengerNotFoundException("passenger not found");

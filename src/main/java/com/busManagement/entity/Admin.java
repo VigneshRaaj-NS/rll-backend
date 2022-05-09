@@ -16,7 +16,7 @@ public class Admin {
 
 	@Id
 	private int adminId;
-	@Column(nullable = false)
+	@Column(nullable = false) //notnull
 	private String password;
 	@Column(nullable = false)
 	private String adminName;

@@ -13,12 +13,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /*
  *  change the schema attribute according to your schema
  */
 
 @Entity
 @Table(name = "booking_details",schema = "bus")
+@Data @NoArgsConstructor @AllArgsConstructor 
 public class BookingDetails {
 
 	@Id
@@ -38,10 +43,7 @@ public class BookingDetails {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Passenger> passengers = new ArrayList<Passenger>();
 
-	public BookingDetails() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	
 

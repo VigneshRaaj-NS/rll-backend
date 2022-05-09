@@ -18,8 +18,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "user",schema = "bus")
+@Data @NoArgsConstructor @AllArgsConstructor
 public class User {
 	
 	@Nullable
@@ -42,10 +47,7 @@ public class User {
 	@JoinColumn(name = "user_id") //user_id column will be merged into BookingDetails Entity
 	private List<BookingDetails> bookingDetails = new ArrayList<BookingDetails>();
 
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	public User(Integer userId, String userName, String password, Long phone, String email) {
 		super();
