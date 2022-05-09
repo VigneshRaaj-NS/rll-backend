@@ -74,6 +74,4 @@ CREATE TABLE `booking_details` (
 );
 
 
- CREATE TABLE `hibernate_sequence` (
-  `next_val` bigint DEFAULT NULL
-);
+ 
