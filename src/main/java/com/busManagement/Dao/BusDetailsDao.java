@@ -11,7 +11,7 @@ import com.busManagement.entity.BusDetails;
 @Repository
 public interface BusDetailsDao extends JpaRepository<BusDetails, Integer> {
 
-	@Query("select f from BusDetails f where f.arrivalBusstop = ?1 and f.departureBusstop = ?2") //JPQL ???
+	@Query("select f from BusDetails f where f.arrivalBusstop = ?1 and f.departureBusstop = ?2") //JPQL 
 	public List<BusDetails> findByRouteDate(String sourceBusstop,String destinationBusstop);
 	
 }

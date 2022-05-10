@@ -1,11 +1,8 @@
 package com.busManagement.serviceImpl;
-
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.busManagement.Dao.*;
 import com.busManagement.entity.Admin;
 import com.busManagement.entity.BookingDetails;
@@ -19,7 +16,6 @@ import com.busManagement.exception.NullAdminException;
 import com.busManagement.exception.NullBusDetailsException;
 import com.busManagement.service.AdminService;
 import com.busManagement.utils.AdminAuth;
-
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -40,7 +36,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Admin addAdmin(Admin admin) {
 		if (admin == null)
-			throw new NullAdminException("no data provided");
+			throw new NullAdminException("Please Enter Data");
 		Integer adminId = (int) ((Math.random() * 900) + 100); //
 		
 		admin.setAdminId(adminId);
@@ -59,7 +55,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Admin getAdmin(Integer adminId) {
 		if (adminId == null)
-			throw new NullAdminException("no data provided");
+			throw new NullAdminException("Please Enter Data");
 		Optional<Admin> admin = adminDao.findById(adminId);
 		if (!admin.isPresent()) {
 			throw new AdminDoesnotExistException("admin does not exist ");
@@ -71,7 +67,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deleteAdmin(Integer adminId) {
 		if (adminId == null)
-			throw new NullAdminException("no data provided");
+			throw new NullAdminException("Please Enter Data");
 		Optional<Admin> admin = adminDao.findById(adminId);
 		if (!admin.isPresent()) {
 			throw new AdminDoesnotExistException("admin Doesnot Exist Exception");
@@ -79,11 +75,11 @@ public class AdminServiceImpl implements AdminService {
 		adminDao.deleteById(adminId);
 	}
     
-	//a
+	//admin Login 
 	@Override
 	public Admin adminLogin(AdminAuth auth) {
 		if (auth == null) {
-			throw new NullAdminException("no data provided");
+			throw new NullAdminException("Please Enter Data");
 		}
 		Optional<Admin> admin = adminDao.findById(auth.getAdminId());
 		if (admin.isPresent()) {
@@ -92,11 +88,11 @@ public class AdminServiceImpl implements AdminService {
 			if (admin.get().getAdminId() == auth.getAdminId() && admin.get().getPassword().equals(auth.getPassword())) {
 				return admin.get();
 			} else {
-				throw new AdminDoesnotExistException("invalid login id or password");
+				throw new AdminDoesnotExistException("Invalid Login ID or Password");
 			}
 			
 		} else
-			throw new AdminDoesnotExistException("admin doesnot exist");
+			throw new AdminDoesnotExistException("Please Enter Data");
 	}
      
 	
@@ -110,7 +106,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public BusDetails addBusDetails(BusDetails details) {
 		if (details == null) {
-			throw new NullBusDetailsException("no data provided");
+			throw new NullBusDetailsException("Please Enter Data");
 		}
 		Integer busNumber = (int) ((Math.random() * 9000) + 1000);
 		details.setBusNumber(busNumber);
@@ -122,10 +118,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deleteBus(Integer busNumber) {
 		if (busNumber == null)
-			throw new NullBusDetailsException("No data recieved..");
+			throw new NullBusDetailsException("Please Enter Data");
 		Optional<BusDetails> details = busDao.findById(busNumber);
 		if (!details.isPresent()) {
-			throw new BusDetailsNotFoundException("Bus Details not found");
+			throw new BusDetailsNotFoundException("Bus Details Not Found");
 		}
 		busDao.deleteById(busNumber);
 	}
@@ -134,7 +130,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public BusDetails updateBus(BusDetails details) {
 		if (details == null)
-			throw new NullBusDetailsException("No data recieved..");
+			throw new NullBusDetailsException("Please Enter Data");
 		Optional<BusDetails> busDetails = busDao.findById(details.getBusNumber());
 		if (!busDetails.isPresent()) {
 			throw new BusDetailsNotFoundException("Bus with busNumber: " + details.getBusNumber() + " not exists..");
@@ -144,17 +140,17 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	
-	//Gettin all the passengers
+	//Getting all the passengers
 	public List<Passenger> getAllPassengers(){
 		return passengerDao.findAll();
 	}
 	
 	//Getting list of passengers by ID
 	public List<Passenger> getPassengersByBooking(Integer id){
-		if (id == null) throw new BookingDoesNotFoundException("no data provided");
+		if (id == null) throw new BookingDoesNotFoundException("Please Enter Data");
 		Optional<BookingDetails> details = bookingDao.findById(id);
 		if (!details.isPresent())
-			throw new BookingDoesNotFoundException("booking not found");
+			throw new BookingDoesNotFoundException("Booking Not Found");
 		return details.get().getPassengers();
 	}
 
